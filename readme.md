@@ -12,7 +12,7 @@ Before running the tests, ensure that the following prerequisites are met:
 1. Clone this repository to your local machine and open path:
 
    - open Terminal and Type: 
-                git clone https://github.com/yumaruy/cypress-open-weather
+                git clone https://github.com/vinioliveiras/cypress-open-weather
 
 
    - Type on terminal: 
