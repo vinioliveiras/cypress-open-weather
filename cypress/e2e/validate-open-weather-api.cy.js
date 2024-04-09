@@ -1,5 +1,4 @@
 /// <reference types = "cypress" />
-//import * as data from "../support/apikey.js";
 
 describe('Open Weather API Test', () => {
   
