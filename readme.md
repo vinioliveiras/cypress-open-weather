@@ -40,13 +40,3 @@ Before running the tests, ensure that the following prerequisites are met:
 
 
 
-
-## ⛔ Defects
-
-    1 - The platform is not allowing you to change the number of items in the cart because the component used to demonstrate the number of products is a Tooltip
-
-    2 -  You can checkout without any items in your cart
-
-    3 -  In the Sauce Labs Backpack item, a function is displayed as a string in the product description
-
-    4 - The last item in the list has a function in its name "Test.allTheThings() T-Shirt (Red)"
