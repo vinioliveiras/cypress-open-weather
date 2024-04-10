@@ -1,0 +1,181 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-04-10T15:06:31.855Z",
+    "end": "2024-04-10T15:06:32.570Z",
+    "duration": 715,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a1bdea65-5680-445a-a4d9-aab7d2f661b0",
+      "title": "",
+      "fullFile": "cypress\\e2e\\api\\validate-open-weather-api.cy.js",
+      "file": "cypress\\e2e\\api\\validate-open-weather-api.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d53f28f2-cddd-4f6f-b65c-6f7c02b5af71",
+          "title": "Open Weather API Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Get Current Weather for Lisbon",
+              "fullTitle": "Open Weather API Test Get Current Weather for Lisbon",
+              "timedOut": null,
+              "duration": 322,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `${Cypress.config('URL')}weather?q=${Cypress.config('CITY')}&appid=${Cypress.config('API_KEY')}`\n}).then(response => {\n  cy.log(JSON.stringify(response.body));\n  expect(response.status).to.eq(200);\n  expect(response.isOkStatusCode).to.eq(true);\n  //Validate Country\n  assert.isString(response.body.sys.country, 'Validate Country');\n  expect(response.body.sys.country).to.have.string('PT');\n  //Validate City\n  assert.isString(response.body.name, 'Validate City');\n  expect(response.body.name).to.have.string('Lisbon');\n  //Validate Coordenate Object\n  assert.isObject(response.body.coord, 'Validate Coordenate Object');\n  expect(response.body.coord).to.have.keys('lon', 'lat');\n  //Validate Weather Array\n  assert.isArray(response.body.weather, 'Validate Weather Array');\n  assert.isNotEmpty(response.body.weather, 'Validate Weather Array Is Not Empty');\n  //Validate Main Object\n  assert.isObject(response.body.main, 'Validate Main Object');\n  expect(response.body.main).to.have.any.keys('temp', 'feels_like', 'temp_min', 'temp_max', 'pressure', 'humidity');\n  //Validate Wind Object\n  assert.isObject(response.body.wind, 'Validate Wind Object');\n  expect(response.body.wind).to.have.any.keys('speed', 'deg', 'gust');\n  //Validate Sys Object\n  assert.isObject(response.body.sys, 'Validate Sys Object');\n  expect(response.body.sys).to.have.any.keys('type', 'id', 'country', 'sunrise', 'sunset');\n});",
+              "err": {},
+              "uuid": "c66d6f7e-d0be-47fc-bb09-e0bf4c06d1ef",
+              "parentUUID": "d53f28f2-cddd-4f6f-b65c-6f7c02b5af71",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Get Current Weather Forecast Data for Lisbon",
+              "fullTitle": "Open Weather API Test Get Current Weather Forecast Data for Lisbon",
+              "timedOut": null,
+              "duration": 127,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `${Cypress.config('URL')}forecast?q=${Cypress.config('CITY')}&appid=${Cypress.config('API_KEY')}`\n}).then(response => {\n  cy.log(JSON.stringify(response.body));\n  expect(response.status).to.eq(200);\n  expect(response.isOkStatusCode).to.eq(true);\n  //Validate Forecast Data\n  Cypress._.each(response.body.list.main, data => {\n    expect(data).to.include.all.keys('temp', 'feels_like', 'temp_min', 'temp_max', 'pressure', 'sea_level', 'grnd_level', 'humidity', 'temp_kf');\n  });\n  Cypress._.each(response.body.list.weather, data => {\n    expect(data).to.include.all.keys('id', 'main', 'description', 'icon');\n  });\n  Cypress._.each(response.body.list.clouds, data => {\n    expect(data).to.include.all.keys('all');\n  });\n  Cypress._.each(response.body.list.wind, data => {\n    expect(data).to.include.all.keys('speed', 'deg', 'gust');\n  });\n  Cypress._.each(response.body.list.city, data => {\n    expect(data).to.include.all.keys('name', 'country');\n  });\n});",
+              "err": {},
+              "uuid": "50f7765d-e25b-4b6a-ba9c-979fe3bf454e",
+              "parentUUID": "d53f28f2-cddd-4f6f-b65c-6f7c02b5af71",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Invalid API Key",
+              "fullTitle": "Open Weather API Test Invalid API Key",
+              "timedOut": null,
+              "duration": 67,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `${Cypress.config('URL')}weather?q=${Cypress.config('CITY')}&appid=${Cypress.config('WRONG_API_KEY')}`,\n  failOnStatusCode: false\n}).then(response => {\n  cy.log(JSON.stringify(response.body));\n  expect(response.status).to.eq(401);\n  expect(response.body.message).to.have.string(\"Invalid API key. Please see https://openweathermap.org/faq#error401 for more info.\");\n});",
+              "err": {},
+              "uuid": "5d081988-678f-4c7a-898d-f4c5289a9685",
+              "parentUUID": "d53f28f2-cddd-4f6f-b65c-6f7c02b5af71",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Invalid Location Latitude",
+              "fullTitle": "Open Weather API Test Invalid Location Latitude",
+              "timedOut": null,
+              "duration": 68,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `${Cypress.config('URL')}weather?lat='${Cypress.config('WRONG_LAT')}'&lon=${Cypress.config('LON')}&appid=${Cypress.config('API_KEY')}`,\n  failOnStatusCode: false\n}).then(response => {\n  cy.log(JSON.stringify(response.body));\n  expect(response.status).to.eq(400);\n  expect(response.body.message).to.have.string(\"wrong latitude\");\n});",
+              "err": {},
+              "uuid": "92789330-1bd8-4934-a01d-2d01502b521c",
+              "parentUUID": "d53f28f2-cddd-4f6f-b65c-6f7c02b5af71",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Invalid Location Longitude",
+              "fullTitle": "Open Weather API Test Invalid Location Longitude",
+              "timedOut": null,
+              "duration": 66,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `${Cypress.config('URL')}weather?lat=${Cypress.config('LAT')}&lon=${Cypress.config('WRONG_LON')}&appid=${Cypress.config('API_KEY')}`,\n  failOnStatusCode: false\n}).then(response => {\n  cy.log(JSON.stringify(response.body));\n  expect(response.status).to.eq(400);\n  expect(response.body.message).to.have.string(\"wrong longitude\");\n});",
+              "err": {},
+              "uuid": "c676311f-2fed-4824-a42b-ba2152c8bbfd",
+              "parentUUID": "d53f28f2-cddd-4f6f-b65c-6f7c02b5af71",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c66d6f7e-d0be-47fc-bb09-e0bf4c06d1ef",
+            "50f7765d-e25b-4b6a-ba9c-979fe3bf454e",
+            "5d081988-678f-4c7a-898d-f4c5289a9685",
+            "92789330-1bd8-4934-a01d-2d01502b521c",
+            "c676311f-2fed-4824-a42b-ba2152c8bbfd"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 650,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

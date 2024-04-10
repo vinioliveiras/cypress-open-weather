@@ -1,5 +1,4 @@
 /// <reference types = "cypress" />
-
 context('Open Weather API Test', () => {
   
   it('Get Current Weather for Lisbon', () => {

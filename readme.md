@@ -20,8 +20,12 @@ Before running the tests, ensure that the following prerequisites are met:
 
 2. Install Cypress:
 
-   - open Terminal and Type: 
+   - open Terminal and Type to install Cypress: 
                 npm install cypress --save-dev
+
+   - open Terminal and Type to JSON Reports Lib: 
+                npm install mochawesome mochawesome-merge mochawesome-report-generator --save-dev
+                
    
 
 ## 🎢 Run Tests
@@ -36,7 +40,14 @@ Before running the tests, ensure that the following prerequisites are met:
 2. Run Headless Test:
 
    - open Terminal and Type: 
-                npx cypress run e2e/api/validate-open-weather-api.cy.js
+                Run without report: npx cypress run e2e/api/validate-open-weather-api.cy.js
+
+                Run with report: npx cypress run e2e/api/validate-open-weather-api.cy.js --reporter mochawesome
+
+## 🚁 Tips/Help
+
+1. Your test reports are allocated on Results path in root directory:   
+
 
 
 
