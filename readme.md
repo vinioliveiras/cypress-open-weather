@@ -9,22 +9,26 @@ Before running the tests, ensure that the following prerequisites are met:
 
 ## ⚙️ Setup
 
-1. Clone this repository to your local machine and open path:
+1. Clone this repository to your local machine:
 
-   - open Terminal and Type: 
-                git clone https://github.com/vinioliveiras/cypress-open-weather
+   - Open Terminal and Run this command to Install Cypress:
 
+               git clone https://github.com/vinioliveiras/cypress-open-weather
 
-   - Type on terminal: 
-                cd cypress-open-weather
+2. Open the project on your favorite Code IDE:
 
-2. Install Cypress:
+             
+3. Install Cypress:
 
-   - open Terminal and Type to install Cypress: 
-                npm install cypress --save-dev
+   - Open Terminal and Run this command to Install Cypress:
 
-   - open Terminal and Type to JSON Reports Lib: 
-                npm install mochawesome mochawesome-merge mochawesome-report-generator --save-dev
+               npm install cypress --save-dev
+
+4. Install Report Library:
+
+   - Open Terminal and Run this command to Install Report Library:
+
+               npm install mochawesome mochawesome-merge mochawesome-report-generator --save-dev
                 
    
 
@@ -49,7 +53,7 @@ Before running the tests, ensure that the following prerequisites are met:
 
 ## 🚁 Tips/Help
 
-1. Your test reports are allocated on Results path in root directory:   
+1. Your test reports are allocated on Results path in root directory:
 
 
 
