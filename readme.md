@@ -36,7 +36,7 @@ Before running the tests, ensure that the following prerequisites are met:
 
 1. Run Test in Cypress UI Mode:
 
-   - Open Cypress UI:
+   - Open Cypress UI, select E2E option and select "validate-open-weather-api.cy.js" :
 
                npx cypress open
 
