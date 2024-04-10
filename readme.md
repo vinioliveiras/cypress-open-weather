@@ -37,12 +37,15 @@ Before running the tests, ensure that the following prerequisites are met:
 
    - choose E2E Testing option and Select some test script to run
 
-2. Run Headless Test:
+2. Run Test in Headless Mode:
 
-   - open Terminal and Type: 
-                Run without report: npx cypress run e2e/api/validate-open-weather-api.cy.js
+   - Run without report:
 
-                Run with report: npx cypress run e2e/api/validate-open-weather-api.cy.js --reporter mochawesome
+               npx cypress run e2e/api/validate-open-weather-api.cy.js
+
+   - Run with report: 
+
+               npx cypress run e2e/api/validate-open-weather-api.cy.js --reporter mochawesome
 
 ## 🚁 Tips/Help
 
