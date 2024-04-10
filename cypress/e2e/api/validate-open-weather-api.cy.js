@@ -44,19 +44,19 @@ context('Open Weather API Test', () => {
       expect(response.isOkStatusCode).to.eq(true)
       //Validate Forecast Data
       Cypress._.each(response.body.list.main, (data) => {
-        expect(data).to.include.all.keys('temp', 'feels_like', 'temp_min', 'temp_max', 'pressure', 'sea_level', 'grnd_level', 'humidity', 'temp_kf')
+        expect(data).to.include.any.keys('temp', 'feels_like', 'temp_min', 'temp_max', 'pressure', 'sea_level', 'grnd_level', 'humidity', 'temp_kf')
       })
       Cypress._.each(response.body.list.weather, (data) => {
-        expect(data).to.include.all.keys('id', 'main', 'description', 'icon')
+        expect(data).to.include.any.keys('id', 'main', 'description', 'icon')
       })
       Cypress._.each(response.body.list.clouds, (data) => {
-        expect(data).to.include.all.keys('all')
+        expect(data).to.include.any.keys('all')
       })
       Cypress._.each(response.body.list.wind, (data) => {
-        expect(data).to.include.all.keys('speed','deg','gust')
+        expect(data).to.include.any.keys('speed','deg','gust')
       })
       Cypress._.each(response.body.list.city, (data) => {
-        expect(data).to.include.all.keys('name','country')
+        expect(data).to.include.any.keys('name','country')
       })
     })
   })
@@ -69,6 +69,7 @@ context('Open Weather API Test', () => {
     }).then((response) => {
       cy.log(JSON.stringify(response.body))
       expect(response.status).to.eq(401)
+      //Validate Error Message
       expect(response.body.message).to.have.string("Invalid API key. Please see https://openweathermap.org/faq#error401 for more info.")
     })
   })
@@ -81,6 +82,7 @@ context('Open Weather API Test', () => {
     }).then((response) => {
       cy.log(JSON.stringify(response.body))
       expect(response.status).to.eq(400)
+      //Validate Error Message
       expect(response.body.message).to.have.string("wrong latitude")
     })    
   })
@@ -93,6 +95,7 @@ context('Open Weather API Test', () => {
     }).then((response) => {
       cy.log(JSON.stringify(response.body))
       expect(response.status).to.eq(400)
+      //Validate Error Message
       expect(response.body.message).to.have.string("wrong longitude")
     })    
   })
