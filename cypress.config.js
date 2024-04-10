@@ -9,7 +9,7 @@ module.exports = defineConfig({
     CITY: 'Lisbon',
     LAT: '38.71',
     LON: '-9.13',
-    WRONG_LAT: '-39898.2139',
+    WRONG_LAT: '-3.2139',
     WRONG_LON: '-198.98328',
     
   },

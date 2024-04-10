@@ -36,7 +36,7 @@ Before running the tests, ensure that the following prerequisites are met:
 2. Run Headless Test:
 
    - open Terminal and Type: 
-                npx cypress run validate-open-weather-api.cy.js
+                npx cypress run e2e/api/validate-open-weather-api.cy.js
 
 
 
