@@ -34,12 +34,11 @@ Before running the tests, ensure that the following prerequisites are met:
 
 ## 🎢 Run Tests
 
-1. Open Cypress Dashboard:
+1. Run Test in Cypress UI Mode:
 
-   - open Terminal and Type:   
-                npx cypress open
+   - Open Cypress UI:
 
-   - choose E2E Testing option and Select some test script to run
+               npx cypress open
 
 2. Run Test in Headless Mode:
 
